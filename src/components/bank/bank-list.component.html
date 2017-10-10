@@ -1,7 +1,31 @@
-<div id="bank-list" class="container">
-	
-	<div class="header">
-		<h5>List Bank</h5>
-	</div>
+<table id="bank-list" class="highlight">
+	<thead>
+		<tr>
+			<th *ngFor="let header of table.header">
+				{{header}}
+			</th>
+			<th>
+				Action
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let item of listItem">
+			<td *ngFor="let column of table.body">
+				{{item[column]}}
+			</td>
+			<td>
+				<a class="btn-floating btn-small waves-effect waves-light blue">
+					<i class="material-icons">description</i>
+				</a>
+				<a class="btn-floating btn-small waves-effect waves-light yellow darken-1">
+					<i class="material-icons">mode_edit</i>
+				</a>
+				<a class="btn-floating btn-small waves-effect waves-light red">
+					<i class="material-icons">delete</i>
+				</a>
 
-</div>
+			</td>
+		</tr>
+	</tbody>
+</table>

@@ -8,7 +8,7 @@ class Coordinates {
 export class Bank {
 	
 	private id: number;
-	private name: string;
+	name: string;
 	private address: string;
 	private location: Coordinates;
 	private phone: string;

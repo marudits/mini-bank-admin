@@ -13,6 +13,10 @@ import { BankService } from '../../utils/services/bank.service';
 
 export class BankList implements OnInit {
 	private listItem: Bank[];
+	private table = {
+		header: ['Name', 'Address', 'Rating', 'Favourites'],
+		body: ['name', 'address', 'rating', 'favourites']
+	}
 
 	constructor(
 		private bankService: BankService

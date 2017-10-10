@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+
+header, main, footer {
+   padding-left: 240px;
+}
+
+.side-nav {
+	width: 240px !important;
+
+	.user-view {
+		padding: 16px 16px 0px !important;
+	}
+}
+
+@media only screen and (max-width : 992px) {
+	header, main, footer {
+		padding-left: 0;
+	}
+}
+
+.page-flexbox-wrapper {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column
+}
+
+main {
+	flex: 1 1 auto
+}

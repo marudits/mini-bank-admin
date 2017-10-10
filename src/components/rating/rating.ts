@@ -1,12 +1,15 @@
+import { Bank } from '../bank/bank';
+
 export class Rating {
 	id: number;
 	bankId: number;
+	bankName: string;
 	text: string;
 	value: number;
 	name: string;
 	email: string;
 	createdAt: string;
-	bank: Object[];
+	bank: Bank;
 
 	constructor(
 		id: number,
@@ -16,7 +19,8 @@ export class Rating {
 		name: string,
 		email: string,
 		createdAt: string,
-		bank: Object[]
+		bank: Bank,
+		bankName: string
 		){
 
 		this.id = id;
@@ -26,6 +30,7 @@ export class Rating {
 		this.name = name;
 		this.email = email;
 		this.createdAt = createdAt;
-		this.bank = bank || [];
+		this.bank = bank;
+		this.bankName = bankName;
 	}
 }

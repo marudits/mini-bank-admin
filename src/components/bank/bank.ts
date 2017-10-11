@@ -1,20 +1,23 @@
 import { Rating } from '../rating/rating';
 
 class Coordinates {
-	lat: number | string;
-	lng: number | string;
+	lat: string;
+	lng: string;
 }
 
 export class Bank {
 	
-	private id: number;
+	id: number;
 	name: string;
-	private address: string;
-	private location: Coordinates;
-	private phone: string;
-	private rating: number;
-	private favourites: number;
-	private ratings: Rating[]
+	address: string;
+	location: Coordinates;
+	phone: string;
+	rating: number;
+	favourites: number;
+	officeHours: string[];
+	officeDays: number[];
+	createdAt: string;
+	updatedAt: string;
 
 	constructor(
 		id: number, 
@@ -22,14 +25,13 @@ export class Bank {
 		address: string, 
 		rating: number,
 		favourites: number,
-		ratings: Rating[]){
+		){
 
 		this.id = id;
 		this.name = name;
 		this.address = address;
 		this.rating = rating;
-		this.favourites = favourites;
-		this.ratings = ratings;
+		this.favourites = favourites;	
 	}
 }
 

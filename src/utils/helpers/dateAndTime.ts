@@ -20,3 +20,22 @@ export function calculateDiffTime(time) {
 		}
 	}
 }
+
+export function isValidHourMinute(time: string){
+	return time.split(':').length === 2;
+}
+
+export function isTimeOverlap(start: string, end: string){
+	let timeStart = start.split(':'),
+		timeEnd = end.split(':');
+
+	let hourMinuteStart = new Date();
+	hourMinuteStart.setHours(parseInt(timeStart[0]));
+	hourMinuteStart.setMinutes(parseInt(timeStart[1]));
+
+	let hourMinuteEnd = new Date();
+	hourMinuteEnd.setHours(parseInt(timeEnd[0]));
+	hourMinuteEnd.setMinutes(parseInt(timeEnd[1]));
+
+	return hourMinuteStart.getTime() >= hourMinuteEnd.getTime();
+}

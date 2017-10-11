@@ -1,11 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
+import { MaterializeModule } from "angular2-materialize";
 
 //Components
 import { AppComponent } from './app.component';
 import { BankList } from '../components/bank/bank-list.component';
+import { BankForm } from '../components/bank/bank-form.component';
 import { RatingList } from '../components/rating/rating-list.component';
 import { TopBar } from '../components/navigation/topbar.component';
 import { SideBar } from '../components/navigation/sidebar.component';
@@ -23,7 +26,8 @@ import { AppRoutingModule } from '../utils/config/routing';
 import { BankService } from '../utils/services/bank.service';
 import { RatingService } from '../utils/services/rating.service';
 
-
+import "materialize-css";
+import "angular2-materialize";
 
 @NgModule({
   declarations: [
@@ -35,12 +39,15 @@ import { RatingService } from '../utils/services/rating.service';
     SideBar,
     FootBar,
     BankList,
+    BankForm,
     RatingList
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    MaterializeModule
   ],
   providers: [ BankService, RatingService ],
   bootstrap: [AppComponent]

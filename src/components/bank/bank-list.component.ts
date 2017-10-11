@@ -13,10 +13,13 @@ import { BankService } from '../../utils/services/bank.service';
 
 export class BankList implements OnInit {
 	private listItem: Bank[];
+	private showedItem: Object[];
 	private table = {
-		header: ['Name', 'Address', 'Rating', 'Favourites'],
-		body: ['name', 'address', 'rating', 'favourites']
+		header: ['Name', 'Address', 'Rating', 'Favourites', 'Office Hours', 'Office Days', 'Created At'],
+		body: ['name', 'address', 'rating', 'favourites', 'officeHours', 'officeDays', 'createdAt']
 	}
+
+	private formBank: string = 'modal-bank-form';
 
 	constructor(
 		private bankService: BankService
@@ -27,8 +30,10 @@ export class BankList implements OnInit {
 	}
 
 	private getList(): void {
-		this.bankService.getList()
-			.then(items => this.listItem = items);		
-
+		let params = {order: 'id DESC'}
+		this.bankService.getList(params)
+			.then((items) => {
+				this.listItem = items
+			});
 	}
 }

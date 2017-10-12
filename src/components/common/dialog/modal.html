@@ -2,18 +2,17 @@
 	<div class="modal-content">
 	  <h4>{{info.header}}</h4>
 
-	  <div *ngIf="info.content === MODAL_TYPE.BANK_DETAIL">
-	  	<bank-detail [bank]="info.bank"></bank-detail>
+	  <div [ngSwitch]="info.content">
+	  	<bank-detail *ngSwitchCase="MODAL_TYPE.BANK_DETAIL" [data]="info.data"></bank-detail>
+	  	<rating-detail *ngSwitchCase="MODAL_TYPE.RATING_DETAIL" [data]="info.data"></rating-detail>
+		<p *ngSwitchDefault>{{info.content}}</p>
 	  </div>
 
-	  <ng-template #other>
-	  	<p>{{info.content}}</p>
-	  </ng-template>
 	</div>
-	<div *ngIf="type === 'information'" class="modal-footer">
+	<div *ngIf="type === MODAL_TYPE.INFORMATION" class="modal-footer">
 	  <a class="modal-action modal-close waves-effect waves-gray btn-flat">Close</a>
 	</div>
-	<div *ngIf="type === 'confirmation'" class="modal-footer">
+	<div *ngIf="type === MODAL_TYPE.CONFIRMATION" class="modal-footer">
 	  <a class="modal-action modal-close waves-effect waves-gray btn-flat">Cancel</a>
 	  <a class="modal-action modal-close waves-effect waves-red btn-flat" (click)="(actionList.confirm)()">OK</a>
 	</div>

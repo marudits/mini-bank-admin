@@ -23,8 +23,8 @@ export class BankList implements OnInit {
 	private listItem: Bank[];
 	private showedItem: Object[];
 	private table = {
-		header: ['Name', 'Address', 'Rating', 'Favourites', 'Office Hours', 'Office Days', 'Created At'],
-		body: ['name', 'address', 'rating', 'favourites', 'officeHours', 'officeDays', 'createdAt']
+		header: ['Name', 'Address', 'Rating', 'Favourites', 'Office Hours', 'Office Days'],
+		body: ['name', 'address', 'rating', 'favourites', 'officeHours', 'officeDays']
 	}
 
 	private formBank: string = 'modal-bank-form';
@@ -84,11 +84,11 @@ export class BankList implements OnInit {
 				info: {
 					header: 'Delete Bank',
 					content: `Are you sure to delete ${this.selectedItem.name} data?`,
-					bank: this.selectedItem
+					data: this.selectedItem
 				}
 			}, 
 			{
-				type: 'confirmation'
+				type: MODAL_TYPE.CONFIRMATION
 			},
 			{
 				actionList: {
@@ -108,11 +108,11 @@ export class BankList implements OnInit {
 				info: {
 					header: 'Bank Detail',
 					content: MODAL_TYPE.BANK_DETAIL,
-					bank: this.selectedItem
+					data: this.selectedItem
 				}
 			}, 
 			{
-				type: 'information'
+				type: MODAL_TYPE.INFORMATION
 			},
 			{
 				actionList: {}

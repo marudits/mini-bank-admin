@@ -67,7 +67,6 @@ export class BankForm {
 		this.activatedRouted.paramMap
 			.switchMap((params: ParamMap) => this.bankService.getDetail(+params.get('id')))
 			.subscribe(bank => {
-				console.log('ngOnInit: bank: ', bank)
 				this.bank = bank
 			});
 	}

@@ -1,0 +1,3 @@
+export const MODAL_TYPE = {
+	BANK_DETAIL: 'BANK_DETAIL'
+}

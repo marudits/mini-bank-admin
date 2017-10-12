@@ -8,7 +8,7 @@ import { formatOfficeHours, formatOfficeDays } from '../../utils/helpers/bank';
 })
 
 export class BankDetail {
-	@Input()bank;
+	@Input()data;
 	private bankInfo;
 
 	private table = {
@@ -23,9 +23,9 @@ export class BankDetail {
 	}
 
 	setBankInfo(): void {
-		this.bankInfo = Object.assign({}, this.bank,
-			{formattedOfficeHours: formatOfficeHours(this.bank)},
-			{formattedOfficeDays: formatOfficeDays(this.bank)}
+		this.bankInfo = Object.assign({}, this.data,
+			{formattedOfficeHours: formatOfficeHours(this.data)},
+			{formattedOfficeDays: formatOfficeDays(this.data)}
 		);
 	}
 

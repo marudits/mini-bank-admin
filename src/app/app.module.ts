@@ -13,6 +13,7 @@ import { RatingList } from '../components/rating/rating-list.component';
 import { TopBar } from '../components/navigation/topbar.component';
 import { SideBar } from '../components/navigation/sidebar.component';
 import { FootBar } from '../components/navigation/footbar.component';
+import { DialogModal } from '../components/common/dialog/modal';
 
 //Pages
 import { BankPage } from '../pages/bank/index';
@@ -40,7 +41,8 @@ import "angular2-materialize";
     FootBar,
     BankList,
     BankForm,
-    RatingList
+    RatingList,
+    DialogModal
   ],
   imports: [
     BrowserModule,

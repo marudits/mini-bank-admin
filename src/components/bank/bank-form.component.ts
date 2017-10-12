@@ -1,8 +1,10 @@
-import { Component, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 //Library
 import * as $ from 'jquery';
+import 'rxjs/add/operator/switchMap';
 
 //Component
 import { Bank } from './bank';
@@ -35,7 +37,12 @@ export class BankForm {
 		{id: 0, name: 'Sunday'}
 	];
 
-	constructor(private bankService: BankService, private router: Router){
+	constructor(
+		private bankService: BankService, 
+		private router: Router,
+		private activatedRouted: ActivatedRoute,
+		private location: Location
+		){
 		let bank = {
 			id: -1,
 			name: '',
@@ -54,6 +61,19 @@ export class BankForm {
 		}
 
 		this.bank = bank;
+	}
+
+	ngOnInit(): void{
+		this.activatedRouted.paramMap
+			.switchMap((params: ParamMap) => this.bankService.getDetail(+params.get('id')))
+			.subscribe(bank => {
+				console.log('ngOnInit: bank: ', bank)
+				this.bank = bank
+			});
+	}
+
+	private goBack(): void {
+		this.location.back();
 	}
 
 
@@ -79,7 +99,7 @@ export class BankForm {
 		//validate coordinates
 		const coordsRule = /^(\-)?(0|[1-9])\d*((\.|\,)\d+)?$/;
 		let {lat, lng} = location;
-		if(!lat.match(coordsRule) || !lng.match(coordsRule)){
+		if(!lat.toString().match(coordsRule) || !lng.toString().match(coordsRule)){
 			showToast(`Latitude or Longitude should be number or decimal`);
 			return false;
 		}
@@ -130,20 +150,36 @@ export class BankForm {
 		console.log('formData: ', formData, '| officeDays: ', $('#bank-officedays').val());
 
 		if(this.validateForm(formData)){
-
-			//add new data
-			if(formData.id === -1){
-				delete formData.id;
-			}
-
 			let that = this;
 
-			this.bankService.addBank(formData)
-				.then((item) => {
-					console.log('New added bank: ', item);
-					that.router.navigate(['/bank']);
-					})
-				.catch(this.handleError);	
+			//add data
+			if(formData.id === -1){
+				delete formData.id;
+
+				
+
+				this.bankService.addData(formData)
+					.then((item) => {
+						console.log('New added bank: ', item);
+						that.router.navigate(['/bank']);
+						})
+					.catch(this.handleError);
+
+			//update data
+			} else if (!isNaN(formData.id)) {
+				formData.updatedAt = (new Date()).toString();
+
+				console.log('Updating data: ', formData);
+
+				this.bankService.updateData(formData)
+					.then((item) => {
+						console.log('Updated bank: ', item);
+						that.router.navigate(['/bank']);
+						})
+					.catch(this.handleError);
+			}
+
+			
 		}
 		
 		

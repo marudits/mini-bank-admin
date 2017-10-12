@@ -9,6 +9,7 @@ import { MaterializeModule } from "angular2-materialize";
 import { AppComponent } from './app.component';
 import { BankList } from '../components/bank/bank-list.component';
 import { BankForm } from '../components/bank/bank-form.component';
+import { BankDetail } from '../components/bank/bank-detail.component';
 import { RatingList } from '../components/rating/rating-list.component';
 import { TopBar } from '../components/navigation/topbar.component';
 import { SideBar } from '../components/navigation/sidebar.component';
@@ -40,6 +41,7 @@ import "angular2-materialize";
     SideBar,
     FootBar,
     BankList,
+    BankDetail,
     BankForm,
     RatingList,
     DialogModal

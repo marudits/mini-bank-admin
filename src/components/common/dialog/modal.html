@@ -1,10 +1,17 @@
 <div id="dialog-modal" class="modal" materialize="modal" [materializeParams]="materializeParams" [materializeActions]="modalActions">
 	<div class="modal-content">
 	  <h4>{{info.header}}</h4>
-	  <p>{{info.content}}</p>
+
+	  <div *ngIf="info.content === MODAL_TYPE.BANK_DETAIL">
+	  	<bank-detail [bank]="info.bank"></bank-detail>
+	  </div>
+
+	  <ng-template #other>
+	  	<p>{{info.content}}</p>
+	  </ng-template>
 	</div>
 	<div *ngIf="type === 'information'" class="modal-footer">
-	  <a class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+	  <a class="modal-action modal-close waves-effect waves-gray btn-flat">Close</a>
 	</div>
 	<div *ngIf="type === 'confirmation'" class="modal-footer">
 	  <a class="modal-action modal-close waves-effect waves-gray btn-flat">Cancel</a>

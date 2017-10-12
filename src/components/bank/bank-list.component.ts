@@ -11,6 +11,9 @@ import { BankService } from '../../utils/services/bank.service';
 //Helpers
 import { showToast } from '../../utils/helpers/dialog';
 
+//Config
+import { MODAL_TYPE } from '../../utils/config/modal';
+
 @Component({
 	selector: 'bank-list',
 	templateUrl: './bank-list.component.html'
@@ -65,11 +68,7 @@ export class BankList implements OnInit {
     		});
     }
 
-    onActionDetail(): void {
-    	console.log('actionDetail: ', this.selectedItem)
-    }
-
-	private getList(): void {
+    private getList(): void {
 		let params = {order: 'id DESC'}
 		this.bankService.getList(params)
 			.then((items) => {
@@ -84,7 +83,8 @@ export class BankList implements OnInit {
 			{
 				info: {
 					header: 'Delete Bank',
-					content: 'Are you sure to delete ' + this.selectedItem.name + ' data?'
+					content: `Are you sure to delete ${this.selectedItem.name} data?`,
+					bank: this.selectedItem
 				}
 			}, 
 			{
@@ -101,14 +101,14 @@ export class BankList implements OnInit {
 	}
 
 	private onClickDetail(item: Bank): void{
-		console.log('onClickDetail: ', item);
 		this.selectedItem = item;
 		this.modalInfo = Object.assign({}, 
 			this.modalInfo,
 			{
 				info: {
 					header: 'Bank Detail',
-					content: 'Information: ' + this.selectedItem
+					content: MODAL_TYPE.BANK_DETAIL,
+					bank: this.selectedItem
 				}
 			}, 
 			{

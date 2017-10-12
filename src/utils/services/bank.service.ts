@@ -18,20 +18,37 @@ export class BankService {
 
 	}
 
-	addBank(bank: Bank): Promise<Bank> {
+	addData(bank: Bank): Promise<Bank> {
 		return this.http
 			.post(this.modelUrl, bank, {headers: this.headers})
 			.toPromise()
 			.then(res => res.json() as Bank)
-			.catch(this.handleError)
-			;
+			.catch(this.handleError);
+	}
+
+	deleteData(bank: Bank): Promise<Bank> {
+		return this.http
+			.delete(`${this.modelUrl}/${bank.id}`)
+			.toPromise()
+			.then(res => bank)
+			.catch(this.handleError);
 	}
 
 	getList(params: Object = null): Promise<Bank[]>{
 		let url = params ? this.modelUrl + '?filter=' + JSON.stringify(params) : this.modelUrl;
-		return this.http.get(url, {headers: this.headers})
+		return this.http
+			.get(url, {headers: this.headers})
 			.toPromise()
 			.then(response => response.json() as Bank[])
+			.catch(this.handleError);
+	}
+
+	getDetail(id: number): Promise<Bank> {
+		const params = {include: ['ratings']};
+		return this.http
+			.get(`${this.modelUrl}/${id}?filter=${JSON.stringify(params)}`)
+			.toPromise()
+			.then(res => res.json() as Bank)
 			.catch(this.handleError);
 	}
 
@@ -39,5 +56,13 @@ export class BankService {
 		console.error('An error occured. ', error);
 
 		return Promise.reject(error.message || error);
+	}
+
+	updateData(bank: Bank): Promise<Bank> {
+		return this.http
+			.patch(`${this.modelUrl}/${bank.id}`, bank, {headers: this.headers})
+			.toPromise()
+			.then(res => res.json() as Bank)
+			.catch(this.handleError);
 	}
 }

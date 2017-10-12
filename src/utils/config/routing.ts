@@ -10,7 +10,8 @@ const routes: Routes = [
 	{ path: '', component: HomePage },
 	{ path: 'bank', component: BankPage },
 	{ path: 'bank/add', component: BankForm },
-	{ path: 'rating', component: RatingPage }
+	{ path: 'rating', component: RatingPage },
+	{ path: 'bank/update/:id', component: BankForm}
 ];
 
 @NgModule({

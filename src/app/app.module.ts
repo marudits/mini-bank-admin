@@ -11,6 +11,7 @@ import { BankList } from '../components/bank/bank-list.component';
 import { BankForm } from '../components/bank/bank-form.component';
 import { BankDetail } from '../components/bank/bank-detail.component';
 import { RatingList } from '../components/rating/rating-list.component';
+import { RatingDetail } from '../components/rating/rating-detail.component';
 import { TopBar } from '../components/navigation/topbar.component';
 import { SideBar } from '../components/navigation/sidebar.component';
 import { FootBar } from '../components/navigation/footbar.component';
@@ -44,6 +45,7 @@ import "angular2-materialize";
     BankDetail,
     BankForm,
     RatingList,
+    RatingDetail,
     DialogModal
   ],
   imports: [

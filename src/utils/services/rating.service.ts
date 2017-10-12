@@ -18,6 +18,14 @@ export class RatingService {
 
 	}
 
+	deleteData(rating: Rating): Promise<Rating> {
+		return this.http
+			.delete(`${this.modelUrl}/${rating.id}`)
+			.toPromise()
+			.then(res => rating)
+			.catch(this.handleError);
+	}
+
 	getList(params: Object = null): Promise<Rating[]>{
 		let url = params ? this.modelUrl + '?filter=' + JSON.stringify(params) : this.modelUrl;
 		return this.http.get(url, {headers: this.headers})

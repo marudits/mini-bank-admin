@@ -1,16 +1,61 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
+import { MaterializeModule } from "angular2-materialize";
+
+//Components
 import { AppComponent } from './app.component';
+import { BankList } from '../components/bank/bank-list.component';
+import { BankForm } from '../components/bank/bank-form.component';
+import { BankDetail } from '../components/bank/bank-detail.component';
+import { RatingList } from '../components/rating/rating-list.component';
+import { RatingDetail } from '../components/rating/rating-detail.component';
+import { TopBar } from '../components/navigation/topbar.component';
+import { SideBar } from '../components/navigation/sidebar.component';
+import { FootBar } from '../components/navigation/footbar.component';
+import { DialogModal } from '../components/common/dialog/modal';
+
+//Pages
+import { BankPage } from '../pages/bank/index';
+import { HomePage } from '../pages/home/index';
+import { RatingPage } from '../pages/rating/index';
+
+//Routing Module
+import { AppRoutingModule } from '../utils/config/routing';
+
+//Service
+import { BankService } from '../utils/services/bank.service';
+import { RatingService } from '../utils/services/rating.service';
+
+import "materialize-css";
+import "angular2-materialize";
 
 @NgModule({
   declarations: [
-    AppComponent
+    BankPage,
+    HomePage,
+    RatingPage,
+    AppComponent,
+    TopBar,
+    SideBar,
+    FootBar,
+    BankList,
+    BankDetail,
+    BankForm,
+    RatingList,
+    RatingDetail,
+    DialogModal
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule,
+    AppRoutingModule,
+    FormsModule,
+    MaterializeModule
   ],
-  providers: [],
+  providers: [ BankService, RatingService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

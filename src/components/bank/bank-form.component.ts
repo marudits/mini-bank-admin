@@ -64,11 +64,14 @@ export class BankForm {
 	}
 
 	ngOnInit(): void{
-		this.activatedRouted.paramMap
-			.switchMap((params: ParamMap) => this.bankService.getDetail(+params.get('id')))
-			.subscribe(bank => {
-				this.bank = bank
-			});
+		if(this.router.url !== '/bank/add'){
+			this.activatedRouted.paramMap
+				.switchMap((params: ParamMap) => this.bankService.getDetail(+params.get('id')))
+				.subscribe(bank => {
+					this.bank = bank
+				});	
+		}
+		
 	}
 
 	private goBack(): void {

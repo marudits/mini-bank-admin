@@ -16,6 +16,7 @@ export class SideBar {
 	private menulist = [
 		{type: 'menu', icon: 'account_balance', title: 'Bank', url: '/bank'},
 		{type: 'menu', icon: 'insert_comment', title: 'Rating', url: '/rating'},
-		{type: 'menu', icon: 'group', title: 'About', url: '/about'}
+		{type: 'menu', icon: 'contacts', title: 'Contact', url: '/contact'},
+		{type: 'menu', icon: 'info', title: 'About', url: '/about'}
 	];
 }

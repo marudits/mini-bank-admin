@@ -5,6 +5,7 @@
 	  <div [ngSwitch]="info.content">
 	  	<bank-detail *ngSwitchCase="MODAL_TYPE.BANK_DETAIL" [data]="info.data"></bank-detail>
 	  	<rating-detail *ngSwitchCase="MODAL_TYPE.RATING_DETAIL" [data]="info.data"></rating-detail>
+	  	<employee-detail *ngSwitchCase="MODAL_TYPE.EMPLOYEE_DETAIL" [data]="info.data"></employee-detail>
 		<p *ngSwitchDefault>{{info.content}}</p>
 	  </div>
 
